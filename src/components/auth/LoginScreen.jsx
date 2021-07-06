@@ -10,12 +10,12 @@ const LoginScreen = () => {
                     type="text"
                     placeholder="Email"
                     name="email"
-                    className="auth__input"
+                    className="auth__input mt-1"
                     autoComplete="off" 
                 />
 
                 <input 
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     name="password"
                     className="auth__input" 
@@ -46,7 +46,10 @@ const LoginScreen = () => {
                         </p>
                     </div>
 
-                    <Link to="/auth/register">
+                    <Link 
+                        to="/auth/register"
+                        className="link"
+                    >
                         Create New Account
                     </Link>
             </form>
