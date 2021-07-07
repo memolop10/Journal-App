@@ -1,5 +1,5 @@
-
 import React from 'react'
+import JournalEntries from './JournalEntries'
 
 const Sidebar = () => {
     return (
@@ -20,6 +20,7 @@ const Sidebar = () => {
                   New Entry
               </p>
            </div>
+           <JournalEntries />
         </aside>
     )
 }
