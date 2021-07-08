@@ -1,0 +1,18 @@
+
+.nothing__main-content{
+    display: flex;
+    background-color: $primary;
+    color: #ffff;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+
+    p {
+        text-align: center;
+    }
+
+    i{
+        display: flex;
+        justify-content: center;
+    }
+}
