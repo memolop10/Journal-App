@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth'
 
 const LoginScreen = () => {
 
     const dispatch = useDispatch()
+    const { loading } = useSelector(state => state.ui)
 
     const [ formValues, handleInputChange ] = useForm({
         email: 'inglopezvargas@gmail.com',
@@ -27,7 +28,7 @@ const LoginScreen = () => {
     return (
         <>
             <h3 className="auth__title">Login</h3>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={ handleLogin }>
                 <input 
                     type="text"
                     placeholder="Email"
@@ -50,13 +51,14 @@ const LoginScreen = () => {
                 <button
                     type="submit"  
                     className="btn btn-primary btn-block"
+                    disabled={ loading }
                 >
                     Login
                 </button>
 
                     <div className="auth__social-networks">
                         <p>Login with Social Network</p>
-                    </div>
+                    
                     <div 
                         className="google-btn"
                         onClick={ handleGoogleLogin }
@@ -72,7 +74,7 @@ const LoginScreen = () => {
                             <b>Sign in with google</b>
                         </p>
                     </div>
-
+                </div>
                     <Link 
                         to="/auth/register"
                         className="link"
