@@ -5,6 +5,7 @@ import { types } from "../types/types"
 import { finishLoading, startLoading } from "./ui";
 
 export const startLoginEmailPassword = ( email, password ) => {
+    //el dispatch lo provee thunk   
      return (dispatch) => {
 
         dispatch( startLoading() )

@@ -30,6 +30,7 @@ const RegisterScreen = () => {
         }
     }
 
+    //Para manejo de errores en el formulario de registro
     const isFormValid = () => {
 
         if (name.trim().length === 0) {
