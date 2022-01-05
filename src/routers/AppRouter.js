@@ -23,22 +23,23 @@ const AppRouter = () => {
     useEffect(() => {
         
         firebase.auth().onAuthStateChanged(async (user) => {
+            //user?.uid existe ejecutara el if
+            // ? evalua si el objeto user tienen algo que sea uid
             if (user?.uid) {
                 dispatch( login( user.uid, user.displayName ) )
                 setIsLoggedIn( true )
-
-                
                 dispatch( startLoadingNotes( user.uid ) );
 
             } else {
                 setIsLoggedIn( false )
             }
-
+            //checa si ya hay un usuario logeado
             setChecking( false )
         })
 
     }, [dispatch, setChecking, setIsLoggedIn])
 
+    //espera el logeo del usuario
     if ( checking ) {
         return(
             <h1>Espere...</h1>
