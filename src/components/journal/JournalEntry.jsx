@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import { useDispatch } from 'react-redux';
-import { activeMode } from '../../actions/notes';
+import { activeNote } from '../../actions/notes';
 
 const JournalEntry = ({ id, title, date, body, url }) => {
 
@@ -9,7 +9,7 @@ const JournalEntry = ({ id, title, date, body, url }) => {
     const dispatch = useDispatch();
 
     const handleEntryClick = () => {
-        dispatch( activeMode( id , {
+        dispatch( activeNote( id , {
             date, title, body, url
         }))
     }

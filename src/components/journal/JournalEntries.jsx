@@ -14,6 +14,7 @@ const JournalEntries = () => {
             {
                 notes.map( note => (
                     <JournalEntry 
+                        className="animate__animated animate__fadeIn animate__faster"
                         key={ note.id }
                         {...note }
                     />

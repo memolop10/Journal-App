@@ -2,7 +2,7 @@ import React from 'react'
 import { useRef } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { activeMode } from '../../actions/notes'
+import { activeNote, startDeleting } from '../../actions/notes'
 import { useForm } from '../../hooks/useForm'
 import NotesAppBar from './NotesAppBar'
 
@@ -11,12 +11,15 @@ const NoteScreen = () => {
 
     const { active:note } = useSelector(state => state.notes);
     const [ formValues, handleInputChange, reset ] = useForm( note );
-    const { body, title } = formValues;
+    const { body, title, id } = formValues;
 
 
     const activeId = useRef( note.id );
 
+    //Ayudar a cambiar la nota activa evitando un ciclo
     useEffect(() => {
+        /*cambiar si y solo si el id 
+          de la nota es diferente */
       if ( note.id !== activeId.current ) {
           reset( note );
           activeId.current = note.id    
@@ -24,8 +27,12 @@ const NoteScreen = () => {
     }, [note, reset])
 
     useEffect(() => {
-       dispatch( activeMode( formValues.id, {...formValues} ) )
+       dispatch( activeNote( formValues.id, {...formValues} ) )
     }, [formValues, dispatch])
+
+    const handleDelete = () => {
+        dispatch( startDeleting( id ) )
+    }
 
     return (
         <div className="note__main-content">
@@ -60,12 +67,18 @@ const NoteScreen = () => {
                 ( note.url ) && (
                 <div className="notes__image">
                     <img 
-                        src="https://thumbs.dreamstime.com/z/estaci%C3%B3n-de-recreo-resplandor-azul-en-fondo-oscuro-182098130.jpg" 
-                        alt="ps5"
+                        src={ note.url }
+                        alt="img_note"
                     />
                 </div> )
             }
 
+            <button
+                className='btn btn-danger'
+                onClick={ handleDelete }
+            >
+                Delete
+            </button>
         </div>
     )
 }
